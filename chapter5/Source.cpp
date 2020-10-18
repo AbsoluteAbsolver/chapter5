@@ -23,7 +23,7 @@ int framed_area(int x, int y) // calculate area within frame
 
 int main() {
 	try {
-		vector<int> v = { 5, 7, 9, 4, 6, 8 };
+		vector<int> v = { 5, 101, 9, 4, 6, 8 };
 		cout << v[1] << "\n";
 		int x = -1;
 		int y = 2;
