@@ -9,9 +9,14 @@ class Bad_area {};
 
 
 int area(int length, int width)
+// calculate area of a rectangle;
+// pre-conditions: length and width are positive
+// post-condition: returns a positive value that is the area
 {
-	if (length <= 0 || width <= 0) error("test");//throw Bad_area{};
-	return length * width;
+	if (length <= 0 || width <= 0) error("area() pre-condition");
+	int a = length * width;
+	if (a <= 0) error("area() post-condition value is:", a);
+	return a;
 }
 
 int framed_area(int x, int y) // calculate area within frame
@@ -24,29 +29,31 @@ int framed_area(int x, int y) // calculate area within frame
 int main() {
 	try {
 		vector<int> v = { 5, 101, 9, 4, 6, 8 };
-		cout << v[6] << "\n";
-		int x = -1;
-		int y = 2;
+		cout << v[2] << "\n";
+		int x1 = narrow_cast<int>(2.0);
+		int x = 2;
+		int y = 2147483600;
 		int z = 4;
 		// . . .
-		if (x = -1) error("x=-1");
+		if (x == -1) error("x=-1", "extra text");
 		int area1 = area(x, y);
-		int area2 = framed_area(1, z);
-		int area3 = framed_area(y, z);
-		double ratio = area1 / area3;
+		cout << area1;
+		//int area2 = framed_area(1, z);
+		//int area3 = framed_area(y, z);
+		//double ratio = area1 / area3;
 	}
 	catch (Bad_area) {
 		cout << "Oops! bad arguments to area()\n";
 		return 1;
 	}
-	//catch (...) {
-	//	cerr << "Oops: unknown exception!\n";
-	//	keep_window_open();
-	//	return 2; // 2 indicates failure
-	//}
 	catch (exception& k) {
 		cerr << "runtime error: " << k.what() << '\n';
 		keep_window_open();
 		return 1; // 1 indicates failure
+	}
+	catch (...) {
+		cerr << "Oops: unknown exception!\n";
+		keep_window_open();
+		return 2; // 2 indicates failure
 	}
 }
