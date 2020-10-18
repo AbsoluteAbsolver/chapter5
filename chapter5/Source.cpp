@@ -24,11 +24,12 @@ int framed_area(int x, int y) // calculate area within frame
 int main() {
 	try {
 		vector<int> v = { 5, 101, 9, 4, 6, 8 };
-		cout << v[1] << "\n";
+		cout << v[6] << "\n";
 		int x = -1;
 		int y = 2;
 		int z = 4;
 		// . . .
+		if (x = -1) error("x=-1");
 		int area1 = area(x, y);
 		int area2 = framed_area(1, z);
 		int area3 = framed_area(y, z);
@@ -36,12 +37,14 @@ int main() {
 	}
 	catch (Bad_area) {
 		cout << "Oops! bad arguments to area()\n";
-	}
-	catch (out_of_range) {
-		cerr << "Oops! Range error\n";
 		return 1;
 	}
-	catch (runtime_error& k) {
+	//catch (...) {
+	//	cerr << "Oops: unknown exception!\n";
+	//	keep_window_open();
+	//	return 2; // 2 indicates failure
+	//}
+	catch (exception& k) {
 		cerr << "runtime error: " << k.what() << '\n';
 		keep_window_open();
 		return 1; // 1 indicates failure
